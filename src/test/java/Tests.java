@@ -7,7 +7,7 @@ import java.time.*;
 import java.util.ArrayList;
 
 public class Tests {
-    static ArrayList<FranjaXDia> tasas;
+    static ArrayList<Tasa> tasas;
     static FranjaHoraria ceroAOcho;
     static  FranjaHoraria ochoAVeinte;
     static  FranjaHoraria veinteAVeinticuatro;
@@ -25,12 +25,12 @@ public class Tests {
         veinteAVeinticuatro = new FranjaHoraria(20,24);
         todoElDia = new FranjaHoraria(0,24); //ejemplo de como se puede customizar
         tasas = new ArrayList<>();
-        tasas.add(new FranjaXDia(DayOfWeek.MONDAY,ochoAVeinte,0.2));
-        tasas.add(new FranjaXDia(DayOfWeek.MONDAY,veinteAVeinticuatro,0.1));
-        tasas.add(new FranjaXDia(DayOfWeek.MONDAY,ceroAOcho,0.1));
-        tasas.add(new FranjaXDia(DayOfWeek.TUESDAY,ceroAOcho,0.1));
-        tasas.add(new FranjaXDia(DayOfWeek.TUESDAY,ochoAVeinte,0.2)); //etc
-        tasas.add(new FranjaXDia(DayOfWeek.SUNDAY,todoElDia,0.1));
+        tasas.add(new Tasa(DayOfWeek.MONDAY,ochoAVeinte,0.2));
+        tasas.add(new Tasa(DayOfWeek.MONDAY,veinteAVeinticuatro,0.1));
+        tasas.add(new Tasa(DayOfWeek.MONDAY,ceroAOcho,0.1));
+        tasas.add(new Tasa(DayOfWeek.TUESDAY,ceroAOcho,0.1));
+        tasas.add(new Tasa(DayOfWeek.TUESDAY,ochoAVeinte,0.2)); //etc
+        tasas.add(new Tasa(DayOfWeek.SUNDAY,todoElDia,0.1));
     }
 
     @Test
@@ -83,37 +83,19 @@ public class Tests {
         Assertions.assertEquals(578,juanPerez.facturacion(7,2019));
     }
     @Test
-    public void llamadoInternacional(){
+    public void llamadoInternacional() {
         inicio = LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(1564304400), ZoneId.of("America/Argentina/Buenos_Aires")));
         // mock del domingo 28/7 a las 6:00hs
         fin = LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(1564351200), ZoneId.of("America/Argentina/Buenos_Aires")));
         // mock del mismo dia a las 19:00hs
-        Intervalo intervaloVIP = new Intervalo(inicio,fin);
-        Llamable llamadoVIP = new LlamadoInternacional(intervaloVIP,new Pais(0.5));
-        julio = new Mes(inicio.toLocalDate(),new Abono(500),new ArrayList<>());
+        Intervalo intervaloVIP = new Intervalo(inicio, fin);
+        Llamable llamadoVIP = new LlamadoInternacional(intervaloVIP, new Pais(0.5));
+        julio = new Mes(inicio.toLocalDate(), new Abono(500), new ArrayList<>());
         ArrayList<Mes> mesesDeJuan = new ArrayList();
         mesesDeJuan.add(julio);
-        juanPerez = new Usuario("Juan Lopez",mesesDeJuan);
+        juanPerez = new Usuario("Juan Lopez", mesesDeJuan);
 
         juanPerez.realizarLlamado(llamadoVIP); //13*60*0.5 + abono = 890
-        Assertions.assertEquals(890,juanPerez.facturacion(7,2019));
-    }
-    @Test
-    public void llamadoLunesAMartes(){
-        inicio = LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(1563843600), ZoneId.of("America/Argentina/Buenos_Aires")));
-        //mismo lunes a las 22:00hs
-        fin = LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(1563865200), ZoneId.of("America/Argentina/Buenos_Aires")));
-        // martes siguiente a las 4:00hs
-
-
-        Intervalo intervaloDentista = new Intervalo(inicio,fin);
-        Llamable llamadoDentista = new LlamadoLocal(intervaloDentista,tasas);
-        julio = new Mes(inicio.toLocalDate(),new Abono(500),new ArrayList<>());
-        ArrayList<Mes> mesesDeJuan = new ArrayList();
-        mesesDeJuan.add(julio);
-        juanPerez = new Usuario("Juan Lopez",mesesDeJuan);
-
-        juanPerez.realizarLlamado(llamadoDentista); //2*60*0.1 + 4*60*0.1 + abono = 536
-        Assertions.assertEquals(536,juanPerez.facturacion(7,2019));
+        Assertions.assertEquals(890, juanPerez.facturacion(7, 2019));
     }
 }

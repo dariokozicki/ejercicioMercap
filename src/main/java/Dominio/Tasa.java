@@ -2,12 +2,12 @@ package Dominio;
 
 import java.time.DayOfWeek;
 
-public class FranjaXDia {
+public class Tasa {
     private FranjaHoraria franja;
     private DayOfWeek dia;
     private double monto;
 
-    public FranjaXDia(DayOfWeek dia, FranjaHoraria franja, double monto){
+    public Tasa(DayOfWeek dia, FranjaHoraria franja, double monto){
         this.dia = dia;
         this.franja = franja;
         this.monto = monto;

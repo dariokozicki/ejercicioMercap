@@ -2,7 +2,6 @@ package Dominio;
 
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 public class FranjaHoraria {
     private int minimo;
@@ -24,14 +23,5 @@ public class FranjaHoraria {
     public LocalDateTime adaptar(LocalDateTime momento){
         return momento.toLocalDate().atTime(truncar(momento),0);
     }
-    public LocalDateTime adaptarFin(LocalDateTime momento){
-        if (momento.getHour()<minimo)
-            return momento.minusDays(1).plusHours(momento.getHour());
-        return momento;
-    }
-    public LocalDateTime adaptarInicio(LocalDateTime momento){
-        if (momento.getHour()>maximo)
-            return momento.plusDays(1).minus(momento.getHour(), ChronoUnit.HOURS);
-        return momento;
-    }
+
 }

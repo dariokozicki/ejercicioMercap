@@ -15,11 +15,19 @@ public class Usuario {
         return conseguirMes(mes,año).get().monto();
     }
 
-    private Optional<Mes> conseguirMes(int mes, int año){
+    public Optional<Mes> conseguirMes(int mes, int año){
         return meses.stream().filter(m->m.año()==año && m.mes()==mes).findFirst();
     }
 
     public void realizarLlamado(Llamable llamado){
         meses.get(meses.size()-1).agregarLlamado(llamado);
+    }
+
+    public ArrayList<Llamable> llamados(int mes, int año){
+        return conseguirMes(mes,año).get().llamados();
+    }
+
+    public String nombre(){
+        return nombre;
     }
 }

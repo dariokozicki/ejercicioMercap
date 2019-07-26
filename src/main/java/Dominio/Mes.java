@@ -27,4 +27,11 @@ public class Mes {
     public void agregarLlamado(Llamable llamado){
         llamables.add(llamado);
     }
+
+    public ArrayList<Llamable> llamados(){
+        return llamables;
+    }
+    public double abono(){
+        return abonoBasico.monto();
+    }
 }

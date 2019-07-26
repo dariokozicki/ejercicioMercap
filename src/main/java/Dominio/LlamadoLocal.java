@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class LlamadoLocal implements Llamable {
     private Intervalo intervalo;
-    private ArrayList<FranjaXDia> tasas;
+    private ArrayList<Tasa> tasas;
 
-    public LlamadoLocal(Intervalo intervalo, ArrayList<FranjaXDia> tasas){
+    public LlamadoLocal(Intervalo intervalo, ArrayList<Tasa> tasas){
         this.intervalo = intervalo;
         this.tasas = tasas;
     }
