@@ -16,7 +16,8 @@ public class EjercicioLlamados {
 
         ArrayList<Llamable> llamadosDeJuan = programa.cargarLlamados(tasas);
 
-        Mes julio = new Mes(LocalDateTime.now().toLocalDate(),new Abono(500), llamadosDeJuan);
+        Mes julio = new Mes(programa.getDateTime(1563789600L).toLocalDate(),new Abono(500), llamadosDeJuan);
+        // el primer parametro es solo para tener una representacion del mes y el año
 
         Usuario juanPerez = new Usuario("Juan Perez",new ArrayList<Mes>(){{add(julio);}});
 
@@ -52,8 +53,8 @@ public class EjercicioLlamados {
         epochs[3][0] = 1564304400L;
         epochs[3][1] = 1564351200L;
         for (int i=0;i<cant;i++) {
-            momentos[i][0] = LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(epochs[i][0]), ZoneId.of("America/Argentina/Buenos_Aires")));
-            momentos[i][1] = LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(epochs[i][1]), ZoneId.of("America/Argentina/Buenos_Aires")));
+            momentos[i][0] = getDateTime(epochs[i][0]);
+            momentos[i][1] = getDateTime(epochs[i][1]);
 
         }
         Intervalo[] intervalos = new Intervalo[4];
@@ -80,5 +81,8 @@ public class EjercicioLlamados {
         System.out.println(usuario.conseguirMes(mes,año).get().abono()+ "\n=");
 
         System.out.println(usuario.facturacion(mes,año));
+    }
+    public LocalDateTime getDateTime(long epoch){
+        return LocalDateTime.now(Clock.fixed(Instant.ofEpochSecond(epoch), ZoneId.of("America/Argentina/Buenos_Aires")));
     }
 }

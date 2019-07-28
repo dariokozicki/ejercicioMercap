@@ -44,7 +44,7 @@ public class Tests {
         julio = new Mes(inicio.toLocalDate(),new Abono(500),new ArrayList<>());
         ArrayList<Mes> mesesDeJuan = new ArrayList();
         mesesDeJuan.add(julio);
-        juanPerez = new Usuario("Juan Lopez",mesesDeJuan);
+        juanPerez = new Usuario("Juan Perez",mesesDeJuan);
 
         juanPerez.realizarLlamado(llamadoAbuela); //60*0.1 + 8*60*0.2 + abono = 602
         Assertions.assertEquals(602,juanPerez.facturacion(7,2019));
@@ -60,7 +60,7 @@ public class Tests {
         julio = new Mes(inicio.toLocalDate(),new Abono(500),new ArrayList<>());
         ArrayList<Mes> mesesDeJuan = new ArrayList();
         mesesDeJuan.add(julio);
-        juanPerez = new Usuario("Juan Lopez",mesesDeJuan);
+        juanPerez = new Usuario("Juan Perez",mesesDeJuan);
 
         juanPerez.realizarLlamado(llamadoVicio); //3*60*0.1 + 12*60*0.2 + 2*60*0.1 + abono = 674
         Assertions.assertEquals(674,juanPerez.facturacion(7,2019));
@@ -77,7 +77,7 @@ public class Tests {
         julio = new Mes(inicio.toLocalDate(),new Abono(500),new ArrayList<>());
         ArrayList<Mes> mesesDeJuan = new ArrayList();
         mesesDeJuan.add(julio);
-        juanPerez = new Usuario("Juan Lopez",mesesDeJuan);
+        juanPerez = new Usuario("Juan Perez",mesesDeJuan);
 
         juanPerez.realizarLlamado(llamadoEclesiastico); //13*60*0.1 + abono = 578
         Assertions.assertEquals(578,juanPerez.facturacion(7,2019));
@@ -93,7 +93,7 @@ public class Tests {
         julio = new Mes(inicio.toLocalDate(), new Abono(500), new ArrayList<>());
         ArrayList<Mes> mesesDeJuan = new ArrayList();
         mesesDeJuan.add(julio);
-        juanPerez = new Usuario("Juan Lopez", mesesDeJuan);
+        juanPerez = new Usuario("Juan Perez", mesesDeJuan);
 
         juanPerez.realizarLlamado(llamadoVIP); //13*60*0.5 + abono = 890
         Assertions.assertEquals(890, juanPerez.facturacion(7, 2019));
